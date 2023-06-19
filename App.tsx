@@ -1,21 +1,36 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TextInput } from "react-native";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Profissional React Native</Text>
-      <View style={{ backgroundColor: "red" }}>
-        <Image
-          onLoad={({ nativeEvent }) => {
-            console.log("width: ", nativeEvent.source.width);
-            console.log("height: ", nativeEvent.source.height);
-          }}
-          resizeMode="contain"
-          source={{ uri: "https://images.unsplash.com/photo-1661956602153-23384936a1d3" }}
-          style={{ height: 300, width: 300 }}
-        />
-      </View>
+      <Text 
+        style={{
+          fontSize: 25,
+          fontWeight: "bold",
+        }}
+      >Profissional React Native</Text>
+      <TextInput
+        autoCapitalize="none"
+        multiline
+        placeholder="Digite seu nome"
+        // onChange={(e) => {
+        //   console.log(e.nativeEvent.text);
+        // }}
+        onChangeText={(text) => {
+          console.log(text);
+        }}
+        placeholderTextColor="#ddd"
+        style={{
+          paddingHorizontal	: 10,
+          borderWidth: 1,
+          height: 50,
+          width: 250,
+          marginTop: 10,
+          color: "#550ab1",
+          fontWeight: "bold",
+          fontSize: 18,
+        }}
+      />
     </View>
   );
 }
