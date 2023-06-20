@@ -14,8 +14,11 @@ import { List } from "./components/List";
 import { login } from "./service/authService";
 import { Coffee, coffeeList } from "./CoffeeList/data/coffeeList";
 import { CoffeeItem } from "./CoffeeList/CoffeeItem";
+import { coffeeList100 } from "./CoffeeList/data/cofeeLis100";
+import { useState } from "react";
 
 export default function App() {
+  const [list, showList] = useState(false);
   const changeName = (text: string) => {
     console.log(text);
   };
@@ -35,20 +38,30 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* <ScrollView
-        onScroll={({ nativeEvent }) => console.log(nativeEvent.contentOffset.y)}
-        scrollEventThrottle={2000}
-      >
-        {coffeeList.map((coffee, index) => (
-          <CoffeeItem key={index} {...coffee} />
-        ))}
-      </ScrollView> */}
-      <FlatList
-        data={coffeeList}
-        keyExtractor={(coffee) => coffee.name}
-        // renderItem={({ item, index }) => <CoffeeItem {...item} />}
-        renderItem={renderItem}
-      />
+      <Button title="Press me" onPress={() => showList((prev) => !prev)} />
+
+      {/* {list && (
+        <ScrollView
+          onScroll={({ nativeEvent }) =>
+            console.log(nativeEvent.contentOffset.y)
+          }
+          scrollEventThrottle={2000}
+        >
+          {coffeeList100.map((coffee, index) => (
+            <CoffeeItem key={index} {...coffee} />
+          ))}
+        </ScrollView>
+      )} */}
+      {list && (
+        <FlatList
+          data={coffeeList100}
+          keyExtractor={(coffee) => coffee.name}
+          // renderItem={({ item, index }) => <CoffeeItem {...item} />}
+          renderItem={renderItem}
+          initialNumToRender={10}
+          windowSize={3}
+        />
+      )}
     </View>
   );
 }
