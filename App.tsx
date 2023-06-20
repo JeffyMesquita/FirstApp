@@ -1,8 +1,17 @@
-import { View, StyleSheet, Text, Alert, Platform } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Alert,
+  Platform,
+  ScrollView,
+} from "react-native";
 import { Button } from "./components/Button";
 import { TextInput } from "./components/TextInput";
 import { List } from "./components/List";
 import { login } from "./service/authService";
+import { coffeeList } from "./CoffeeList/data/coffeeList";
+import { CoffeeItem } from "./CoffeeList/CoffeeItem";
 
 export default function App() {
   const changeName = (text: string) => {
@@ -11,8 +20,8 @@ export default function App() {
 
   async function onPressButton() {
     try {
-      const token = await login('je_2742@hotmail.com', '123456');
-      Alert.alert('Sucesso', `Token: ${token}`);
+      const token = await login("je_2742@hotmail.com", "123456");
+      Alert.alert("Sucesso", `Token: ${token}`);
     } catch (error) {
       console.log(error);
     }
@@ -20,41 +29,21 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <List />
-
-      <Text
-        style={{
-          fontSize: 25,
-          fontWeight: "bold",
-        }}
+      <ScrollView
+        onScroll={({ nativeEvent }) => console.log(nativeEvent.contentOffset.y)}
+        scrollEventThrottle={2000}
+        // bounces={false}
+        // showsVerticalScrollIndicator={false}
+        // contentContainerStyle={{paddingHorizontal: 10, backgroundColor: "blue"}}
+        // style={{
+        //   paddingHorizontal: 10,
+        //   backgroundColor: "red",
+        // }}
       >
-        Profissional React Native
-      </Text>
-      <TextInput
-        autoCapitalize="none"
-        placeholder="Digite seu e-mail"
-        onChangeText={changeName}
-      />
-
-      <TextInput
-        placeholder="Digite sua senha"
-        secureTextEntry
-        onChangeText={changeName}
-      />
-
-      <Button
-        style={{ marginTop: 20 }}
-        onPress={onPressButton}
-        title="Entrar"
-      />
-      <Button
-        style={{ marginTop: 10 }}
-        onPress={() => {
-          console.log("Criar uma conta");
-        }}
-        title="Criar uma conta"
-        variant="secondary"
-      />
+        {coffeeList.map((coffee, index) => (
+          <CoffeeItem key={index} {...coffee} />
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -63,7 +52,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
