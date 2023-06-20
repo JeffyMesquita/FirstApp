@@ -1,19 +1,27 @@
 import { View, StyleSheet, Text, Alert, Platform } from "react-native";
 import { Button } from "./components/Button";
 import { TextInput } from "./components/TextInput";
+import { List } from "./components/List";
+import { login } from "./service/authService";
 
 export default function App() {
   const changeName = (text: string) => {
     console.log(text);
   };
 
-  function onPressButton() {
-    console.log("Botão pressionado");
-    Alert.alert("Meu primeiro app", Platform.OS);
+  async function onPressButton() {
+    try {
+      const token = await login('je_2742@hotmail.com', '123456');
+      Alert.alert('Sucesso', `Token: ${token}`);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <View style={styles.container}>
+      <List />
+
       <Text
         style={{
           fontSize: 25,
@@ -36,9 +44,7 @@ export default function App() {
 
       <Button
         style={{ marginTop: 20 }}
-        onPress={() => {
-          console.log("Entrar");
-        }}
+        onPress={onPressButton}
         title="Entrar"
       />
       <Button
