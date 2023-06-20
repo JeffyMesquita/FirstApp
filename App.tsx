@@ -1,16 +1,6 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  Button,
-  Alert,
-  Platform,
-  TouchableHighlight,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
+import { View, StyleSheet, Text, Alert, Platform } from "react-native";
+import { Button } from "./components/Button";
+import { TextInput } from "./components/TextInput";
 
 export default function App() {
   const changeName = (text: string) => {
@@ -34,36 +24,31 @@ export default function App() {
       </Text>
       <TextInput
         autoCapitalize="none"
-        multiline
-        placeholder="Digite seu nome"
+        placeholder="Digite seu e-mail"
         onChangeText={changeName}
-        placeholderTextColor="#ddd"
-        style={styles.textInput}
       />
-      <TouchableHighlight
-        onPressIn={() => console.log("onPressIn")}
-        underlayColor={"#550ab1"}
-        style={styles.button}
-        onPress={() => console.log("Hightlight pressionado")}
-      >
-        <Text style={styles.buttonTitle}>Highlight</Text>
-      </TouchableHighlight>
-      <TouchableOpacity
-        onPressOut={() => console.log("onPressOut")}
-        activeOpacity={0.7}
-        style={styles.button}
-        onPress={() => console.log("Opacity pressionado")}
-      >
-        <Text style={styles.buttonTitle}>Opacity</Text>
-      </TouchableOpacity>
-      <Pressable
-        delayLongPress={1000}
-        onLongPress={() => console.log("onLongPress")}
-        style={styles.button}
-        onPress={() => console.log("pressable pressionado")}
-      >
-        <Text style={styles.buttonTitle}>Pressable</Text>
-      </Pressable>
+
+      <TextInput
+        placeholder="Digite sua senha"
+        secureTextEntry
+        onChangeText={changeName}
+      />
+
+      <Button
+        style={{ marginTop: 20 }}
+        onPress={() => {
+          console.log("Entrar");
+        }}
+        title="Entrar"
+      />
+      <Button
+        style={{ marginTop: 10 }}
+        onPress={() => {
+          console.log("Criar uma conta");
+        }}
+        title="Criar uma conta"
+        variant="secondary"
+      />
     </View>
   );
 }
@@ -74,29 +59,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-  textInput: {
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    height: 50,
-    width: 250,
-    marginTop: 10,
-    color: "#550ab1",
-    fontWeight: "bold",
-    fontSize: 18,
-  },
-  button: {
-    height: 50,
-    width: 200,
-    backgroundColor: "#1D013F",
-    borderRadius: 12,
-    marginTop: 10,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#fff",
   },
 });
