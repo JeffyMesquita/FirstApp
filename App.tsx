@@ -5,12 +5,14 @@ import {
   Alert,
   Platform,
   ScrollView,
+  FlatList,
+  ListRenderItemInfo,
 } from "react-native";
 import { Button } from "./components/Button";
 import { TextInput } from "./components/TextInput";
 import { List } from "./components/List";
 import { login } from "./service/authService";
-import { coffeeList } from "./CoffeeList/data/coffeeList";
+import { Coffee, coffeeList } from "./CoffeeList/data/coffeeList";
 import { CoffeeItem } from "./CoffeeList/CoffeeItem";
 
 export default function App() {
@@ -27,23 +29,26 @@ export default function App() {
     }
   }
 
+  function renderItem({ item }: ListRenderItemInfo<Coffee>) {
+    return <CoffeeItem {...item} />;
+  }
+
   return (
     <View style={styles.container}>
-      <ScrollView
+      {/* <ScrollView
         onScroll={({ nativeEvent }) => console.log(nativeEvent.contentOffset.y)}
         scrollEventThrottle={2000}
-        // bounces={false}
-        // showsVerticalScrollIndicator={false}
-        // contentContainerStyle={{paddingHorizontal: 10, backgroundColor: "blue"}}
-        // style={{
-        //   paddingHorizontal: 10,
-        //   backgroundColor: "red",
-        // }}
       >
         {coffeeList.map((coffee, index) => (
           <CoffeeItem key={index} {...coffee} />
         ))}
-      </ScrollView>
+      </ScrollView> */}
+      <FlatList
+        data={coffeeList}
+        keyExtractor={(coffee) => coffee.name}
+        // renderItem={({ item, index }) => <CoffeeItem {...item} />}
+        renderItem={renderItem}
+      />
     </View>
   );
 }
