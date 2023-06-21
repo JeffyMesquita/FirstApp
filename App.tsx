@@ -6,8 +6,9 @@ export default function App() {
       style={{
         backgroundColor: "#EEE",
         flex: 1,
-        flexDirection: "column",
-        justifyContent: "space-around",
+        flexDirection: "row",
+        // justifyContent: "space-around",
+        alignItems: "center",
       }}
     >
       <View
@@ -22,6 +23,7 @@ export default function App() {
           backgroundColor: "gold",
           width: 100,
           height: 100,
+          alignSelf: "flex-start",
         }}
       />
       <View
