@@ -7,15 +7,13 @@ export default function App() {
         backgroundColor: "#EEE",
         flex: 1,
         flexDirection: "row",
-        flexWrap: "wrap",
-        // alignContent: "space-between",
       }}
     >
       <View
         style={{
           backgroundColor: "tomato",
-          width: 100,
-          height: 100,
+          width: 200,
+          height: 200,
         }}
       />
       <View
@@ -23,20 +21,26 @@ export default function App() {
           backgroundColor: "gold",
           width: 100,
           height: 300,
+          // flexBasis: 150,
+          // flex: 1,
+          // flexGrow: 1,
+          flexShrink: 1,
         }}
       />
       <View
         style={{
           backgroundColor: "dodgerblue",
           width: 100,
-          height: 200,
-        }}        
+          height: 300,
+          flexGrow: 1,
+          flexShrink: 1,
+        }}
       />
       <View
         style={{
           backgroundColor: "limegreen",
           width: 100,
-          height: 200,
+          height: 300,
         }}
       />
     </View>
