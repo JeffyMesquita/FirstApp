@@ -7,24 +7,28 @@ export default function App() {
         backgroundColor: "#EEE",
         flex: 1,
         flexDirection: "column",
+        justifyContent: "space-around",
       }}
     >
       <View
         style={{
           backgroundColor: "tomato",
-          flex: 2,
+          width: 100,
+          height: 100,
         }}
       />
       <View
         style={{
           backgroundColor: "gold",
-          flex: 1,
+          width: 100,
+          height: 100,
         }}
       />
       <View
         style={{
           backgroundColor: "dodgerblue",
-          flex: 3,
+          width: 100,
+          height: 100,
         }}
       />
     </View>
